@@ -77,42 +77,55 @@ public class ArticleDaoImpl implements ArticleDao {
 				.setParameter("articleDesignation", designation).getSingleResult();
 	}
 
-	
 	public Article findById(int idArticle) {
 		return session.byId(Article.class).load(idArticle);
 	}
 
-	
 	/**
 	 * Different ways to update data
 	 */
 	@Override
 	public void updateArticle(Article article) {
-	/*	String hql = "update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock  where idArticle =:id"; 
-		Query<Article> query =  session.createQuery(hql);
-		query.setParameter("articleDesignation", article.getDesignation());
-		query.setParameter("articlenbPoints", article.getNbPoints());
-		query.setParameter("articleStock", article.getStock());
-		query.setParameter("id", article.getIdArticle());	
-		query.executeUpdate();
-	*/	
-		//session.update(article);
-		//session.merge(article);
-		
-		session.createQuery("update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock  where idArticle =:id").setParameter("articleDesignation", article.getDesignation()).setParameter("articlenbPoints", article.getNbPoints()).setParameter("articleStock", article.getStock()).setParameter("id", article.getIdArticle()).executeUpdate();
-		
-		// on peut aussi faire une update en récupértant un objet et le modifiant puis commit (setAttribute avec les getter and setter)
+		/*
+		 * String hql =
+		 * "update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock  where idArticle =:id"
+		 * ; Query<Article> query = session.createQuery(hql);
+		 * query.setParameter("articleDesignation", article.getDesignation());
+		 * query.setParameter("articlenbPoints", article.getNbPoints());
+		 * query.setParameter("articleStock", article.getStock());
+		 * query.setParameter("id", article.getIdArticle()); query.executeUpdate();
+		 */
+		// session.update(article);
+		// session.merge(article);
+
+		session.createQuery(
+				"update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock  where idArticle =:id")
+				.setParameter("articleDesignation", article.getDesignation())
+				.setParameter("articlenbPoints", article.getNbPoints()).setParameter("articleStock", article.getStock())
+				.setParameter("id", article.getIdArticle()).executeUpdate();
+
+		// on peut aussi faire une update en récupértant un objet et le modifiant puis
+		// commit (setAttribute avec les getter and setter)
 	}
 
-	
+	/**
+	 * Delete an article
+	 */
 	public void deleteArticle(Article article) {
 		session.delete(article);
 	}
-	
+
+	/**
+	 * Research article using keyword
+	 */
 	public Article searchByDesignation(String designation) {
-		return (Article) session.createQuery("from Article where designation like :articleDesignation").setParameter("articleDesignation", "%"+designation+"%").getSingleResult();
-		
-		
-	
+		return (Article) session.createQuery("from Article where designation like :articleDesignation")
+				.setParameter("articleDesignation", "%" + designation + "%").getSingleResult();
+
 	}
+	
+	public List<Article>findAllOrderedByName() {
+		return session.createQuery("from Article order by designation").getResultList();
+	}
+
 }

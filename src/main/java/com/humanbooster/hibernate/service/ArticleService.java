@@ -23,5 +23,7 @@ public interface ArticleService {
 	
 	public Article searchByDesignation(String designation);
 	
+	public List<Article>findAllOrderedByName();
+	
 	
 }

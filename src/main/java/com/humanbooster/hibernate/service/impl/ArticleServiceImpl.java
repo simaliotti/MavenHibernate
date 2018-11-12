@@ -111,4 +111,12 @@ public class ArticleServiceImpl implements ArticleService {
 		return article;
 	}
 	
+	
+	public List<Article>findAllOrderedByName(){
+		articleDao.openCurrentSession();
+		List<Article> listArticleOrdonned = articleDao.findAllOrderedByName();
+		articleDao.closeCurrentSession();
+		return listArticleOrdonned;
+	}
+	
 }

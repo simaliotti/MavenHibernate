@@ -26,6 +26,8 @@ public interface ArticleDao {
 	
 	public Article searchByDesignation(String designation);
 	
+	public List<Article>findAllOrderedByName();
+	
 	
 	public Session openCurrentSession();
 

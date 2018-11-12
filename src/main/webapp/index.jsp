@@ -7,8 +7,9 @@
 <title>Index</title>
 </head>
 <body>
+
 <h1>Index</h1>
-			<a href="${pageContext.request.contextPath}/ArticlesServlet">Lister les articles</a> <br />
+			<a href="${pageContext.request.contextPath}/ArticleListOrdonnedServlet">Lister les articles</a> <br />
 			<a href="${pageContext.request.contextPath}/CreateArticleServlet">Créer article</a> <br />
 			<a href="${pageContext.request.contextPath}/FindArticleServlet">Rechercher un article</a> <br />
 		

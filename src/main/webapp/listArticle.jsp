@@ -28,7 +28,8 @@
 	<br>
 	<br>
 	<p>Nombre total d'article(s): ${articles.size()}</p> </br>
-		<a href="${pageContext.request.contextPath}/DeleteAllArticleServlet">Suprrimer tous les articles</a> <br />
+		<a href="${pageContext.request.contextPath}/ArticleListOrdonnedServlet">Ordonner les articles par désignation</a> <br />
+		<a href="${pageContext.request.contextPath}/DeleteAllArticleServlet">Suprrimer tous les articles</a> <br /><br />
 		<a href="${pageContext.request.contextPath}/index"> Retour </a>
 </body>
 </html>
