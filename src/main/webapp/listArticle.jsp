@@ -11,7 +11,7 @@
 	<h1>Liste des Articles</h1>
 	<br>
 	<c:forEach var="article" items="${articles}">
-		<h2>${article.designation} ${article.idArticle } (${article.categorie.nom})
+		<p>${article.designation} ${article.idArticle } ${article.categorie.nom}
 			
 			<form action="UpdateArticleServlet" method="GET">
 			<input type="hidden" name="update" value="${article.idArticle}" /> 
@@ -23,7 +23,7 @@
 			<input type="submit" value="Supprimer" />
 			</form> 
 		
-		</h2>
+		</p>
 	</c:forEach>
 	<br>
 	<br>

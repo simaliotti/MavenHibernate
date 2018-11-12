@@ -1,6 +1,8 @@
 package com.humanbooster.hibernate.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +34,9 @@ public class DeleteArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<Article> listArticle = as.findAllOrderedByName();
+		request.setAttribute("articles", listArticle);
+		this.getServletContext().getRequestDispatcher("/deleteArticleForm.jsp").forward(request, response);
 	}
 
 	/**
@@ -45,7 +48,7 @@ public class DeleteArticleServlet extends HttpServlet {
 		article.setIdArticle(idArticle);
 		as.deleteArticle(article);
 		
-		response.sendRedirect(request.getContextPath()+"/ArticlesServlet");
+		response.sendRedirect(request.getContextPath()+"/index");
 	}
 
 }
