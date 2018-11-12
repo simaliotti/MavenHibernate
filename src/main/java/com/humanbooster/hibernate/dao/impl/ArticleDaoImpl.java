@@ -95,14 +95,16 @@ public class ArticleDaoImpl implements ArticleDao {
 		 * query.setParameter("articleStock", article.getStock());
 		 * query.setParameter("id", article.getIdArticle()); query.executeUpdate();
 		 */
-		// session.update(article);
+		 //session.update(article);
 		// session.merge(article);
 
 		session.createQuery(
-				"update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock  where idArticle =:id")
+				"update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock, categorie = :articleCategorie  where idArticle =:id")
 				.setParameter("articleDesignation", article.getDesignation())
 				.setParameter("articlenbPoints", article.getNbPoints()).setParameter("articleStock", article.getStock())
-				.setParameter("id", article.getIdArticle()).executeUpdate();
+				.setParameter("id", article.getIdArticle()).setParameter("articleCategorie",article.getCategorie())
+				.executeUpdate();
+				
 
 		// on peut aussi faire une update en récupértant un objet et le modifiant puis
 		// commit (setAttribute avec les getter and setter)

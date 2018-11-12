@@ -25,7 +25,7 @@
 		<input type="text" id="name3" value="${article.stock}" name="stock" />
 		<label for="name3">Nombre de points</label>  <br/>
 		
-		<input type="text" id="name4" value="${article.categorie}" name="categorie" />
+		<input type="text" id="name4" value="${article.categorie.nom}" name="categorie" />
 		<label for="name4">Catégorie</label>  <br/>
 		
 		

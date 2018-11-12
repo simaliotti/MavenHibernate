@@ -1,4 +1,4 @@
-package com.humanbooster.hibernate.servlets;
+package com.humanbooster.hibernate.servlets.article;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -15,19 +15,18 @@ import com.humanbooster.hibernate.service.impl.ArticleServiceImpl;
 import com.humanbooster.hibernate.service.impl.CategorieServiceImpl;
 
 /**
- * Servlet implementation class CreateArticle
+ * Servlet implementation class UpdateArticleServlet
  */
-@WebServlet("/CreateArticleServlet")
-public class CreateArticleServlet extends HttpServlet {
+@WebServlet("/UpdateArticleServlet")
+public class UpdateArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	private ArticleService as = new ArticleServiceImpl();
 	private CategorieService cs = new CategorieServiceImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreateArticleServlet() {
+	public UpdateArticleServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,7 +38,11 @@ public class CreateArticleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		this.getServletContext().getRequestDispatcher("/createArticleForm.jsp").forward(request, response);
+		int idArticle = Integer.parseInt(request.getParameter("update"));
+
+		Article article = as.chercherArticleParId(idArticle);
+		request.setAttribute("article", article);
+		this.getServletContext().getRequestDispatcher("/updateArticleForm.jsp").forward(request, response);
 
 	}
 
@@ -49,25 +52,27 @@ public class CreateArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		int idArticle = Integer.parseInt(request.getParameter("idArticle"));
 		String designation = request.getParameter("designation");
 		int nbPoints = Integer.parseInt(request.getParameter("nbPoints"));
 		int stock = Integer.parseInt(request.getParameter("stock"));
-		String categorieName = request.getParameter("categorieName");
-
+		String categorieName = request.getParameter("categorie");
+		System.out.println(categorieName);
+		
 		Categorie categorie = cs.findByName(categorieName);
 		
+		
 		Article article = new Article();
-
 		article.setDesignation(designation);
 		article.setNbPoints(nbPoints);
 		article.setStock(stock);
+		article.setIdArticle(idArticle);
 		article.setCategorie(categorie);
 		
-		as.creerArticle(article);
+		as.updateArticle(article);
+		
 		
 		response.sendRedirect(request.getContextPath()+"/index");
-
 	}
 
 }
