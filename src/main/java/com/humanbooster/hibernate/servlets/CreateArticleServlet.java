@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.humanbooster.hibernate.business.Article;
 import com.humanbooster.hibernate.business.Categorie;
 import com.humanbooster.hibernate.service.ArticleService;
+import com.humanbooster.hibernate.service.CategorieService;
 import com.humanbooster.hibernate.service.impl.ArticleServiceImpl;
+import com.humanbooster.hibernate.service.impl.CategorieServiceImpl;
 
 /**
  * Servlet implementation class CreateArticle
@@ -20,6 +22,7 @@ public class CreateArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ArticleService as = new ArticleServiceImpl();
+	private CategorieService cs = new CategorieServiceImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,14 +53,17 @@ public class CreateArticleServlet extends HttpServlet {
 		String designation = request.getParameter("designation");
 		int nbPoints = Integer.parseInt(request.getParameter("nbPoints"));
 		int stock = Integer.parseInt(request.getParameter("stock"));
-		//String categorieName = request.getParameter("categorieName");
+		String categorieName = request.getParameter("categorieName");
 
+		Categorie categorie = cs.findByName(categorieName);
+		
 		Article article = new Article();
 
 		article.setDesignation(designation);
 		article.setNbPoints(nbPoints);
 		article.setStock(stock);
-
+		article.setCategorie(categorie);
+		
 		as.creerArticle(article);
 		
 		response.sendRedirect(request.getContextPath()+"/index");

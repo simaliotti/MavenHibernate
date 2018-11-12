@@ -14,6 +14,10 @@ public interface CategorieDao {
 	
 	public List<Categorie> findAll();
 	
+	public Categorie findByName(String name);
+	
+	public Categorie findById(int id);
+	
 	public Session openCurrentSession();
 	
 	public Session openCurrentSessionWithTransaction();

@@ -25,4 +25,18 @@ public class CategorieServiceImpl implements CategorieService {
 		categorieDao.closeCurrentSession();
 		return listCategorie;
 	}
+
+	public Categorie findByName(String name) {
+		categorieDao.openCurrentSession();
+		Categorie cat = categorieDao.findByName(name);
+		categorieDao.closeCurrentSession();
+		return cat;
+	}
+	public Categorie findById(int id) {
+		categorieDao.openCurrentSession();
+		Categorie cat = categorieDao.findById(id);
+		categorieDao.closeCurrentSession();
+		return cat;
+	}
+
 }

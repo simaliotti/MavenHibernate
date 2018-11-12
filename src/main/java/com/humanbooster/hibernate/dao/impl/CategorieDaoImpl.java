@@ -32,6 +32,15 @@ public class CategorieDaoImpl implements CategorieDao {
 		return session.createQuery("from Categorie").getResultList();
 		
 	}
+	
+	public Categorie findByName(String name) {
+		return (Categorie) session.createQuery("from Categorie where nom = :name").setParameter("name", name).getSingleResult();
+	}
+	
+	public Categorie findById(int id) {
+		return (Categorie) session.createQuery("from Categorie where idCategorie = :id").setParameter("id", id).getSingleResult();
+	}
+	
 		public Session openCurrentSession() {
 			session = getSessionFactory().openSession();
 			return session;
