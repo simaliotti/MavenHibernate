@@ -22,7 +22,7 @@
 
 			<c:forEach items="${articles}" var="article">
 				
-				<option value="${article.idArticle}">${article.designation }</option>	
+				<option value="${article.idArticle}">${article.designation } ${article.idArticle }</option>	
 				
 				
 			</c:forEach>
