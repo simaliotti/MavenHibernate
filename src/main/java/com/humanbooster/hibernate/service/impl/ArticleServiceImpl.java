@@ -1,5 +1,6 @@
 package com.humanbooster.hibernate.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.humanbooster.hibernate.business.Article;
@@ -66,6 +67,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	/**
 	 * Update Article
+	 * 
 	 * @article
 	 * @return nb of updates entites
 	 */
@@ -73,12 +75,40 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDao.openCurrentSessionWithTransaction();
 		articleDao.updateArticle(article);
 		articleDao.closeCurrentSessionWithTransaction();
-			
+
 	}
-	
+
+	/**
+	 * Delete an Article
+	 */
 	public void deleteArticle(Article article) {
 		articleDao.openCurrentSessionWithTransaction();
 		articleDao.deleteArticle(article);
 		articleDao.closeCurrentSessionWithTransaction();
 	}
+
+
+	/**
+	 * Delete all Article
+	 */
+	public void deleteAll() {
+		articleDao.openCurrentSessionWithTransaction();
+		List<Article> listArticles = articleDao.findAll();
+		for (Article article : listArticles) {
+			articleDao.deleteArticle(article);
+		}
+		articleDao.closeCurrentSessionWithTransaction();
+	}
+
+	/**
+	 * Search by Designation i.e approx research
+	 */
+	public Article searchByDesignation(String designation) {
+		articleDao.openCurrentSessionWithTransaction();
+		Article article = articleDao.searchByDesignation(designation);
+		articleDao.closeCurrentSessionWithTransaction();
+		
+		return article;
+	}
+	
 }

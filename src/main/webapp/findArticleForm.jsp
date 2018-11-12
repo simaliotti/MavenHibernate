@@ -7,15 +7,20 @@
 <title>Formulaire création article</title>
 </head>
 <body>
-<h1>Rechercher un article</h1>
+<h1>Rechercher un article (utiliser une méthode)</h1>
 
 	<form action="FindArticleServlet" method="POST">
 		
 		
 		<input type="text" id="name" name="designation" />
 		<label for="name">Rechercher par désignation</label>  <br/>
+		
 		<input type="text" id="name2" name="id" />
 		<label for="name2">Recherche par Id</label>  <br/>
+		
+		<input type="text" id="name3" name="searchByDesignation" />
+		<label for="name3">Recherche approximative par designation</label>  <br/>
+		
 		
 		
 		

@@ -101,6 +101,7 @@ public class ArticleDaoImpl implements ArticleDao {
 		
 		session.createQuery("update Article set designation=:articleDesignation, nbPoints=:articlenbPoints, stock=:articleStock  where idArticle =:id").setParameter("articleDesignation", article.getDesignation()).setParameter("articlenbPoints", article.getNbPoints()).setParameter("articleStock", article.getStock()).setParameter("id", article.getIdArticle()).executeUpdate();
 		
+		// on peut aussi faire une update en récupértant un objet et le modifiant puis commit (setAttribute avec les getter and setter)
 	}
 
 	
@@ -108,4 +109,10 @@ public class ArticleDaoImpl implements ArticleDao {
 		session.delete(article);
 	}
 	
+	public Article searchByDesignation(String designation) {
+		return (Article) session.createQuery("from Article where designation like :articleDesignation").setParameter("articleDesignation", "%"+designation+"%").getSingleResult();
+		
+		
+	
+	}
 }

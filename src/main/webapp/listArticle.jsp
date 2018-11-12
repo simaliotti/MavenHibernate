@@ -28,6 +28,7 @@
 	<br>
 	<br>
 	<p>Nombre total d'article(s): ${articles.size()}</p> </br>
+		<a href="${pageContext.request.contextPath}/DeleteAllArticleServlet">Suprrimer tous les articles</a> <br />
 		<a href="${pageContext.request.contextPath}/index"> Retour </a>
 </body>
 </html>

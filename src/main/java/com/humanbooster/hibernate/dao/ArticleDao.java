@@ -24,6 +24,9 @@ public interface ArticleDao {
 	
 	public void deleteArticle(Article article);
 	
+	public Article searchByDesignation(String designation);
+	
+	
 	public Session openCurrentSession();
 
 	public Session openCurrentSessionWithTransaction();

@@ -45,6 +45,38 @@ public class FindArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		/*
+		 * String designation = request.getParameter("designation"); int idArticle = -1;
+		 * try { idArticle = Integer.parseInt(request.getParameter("id")); } catch
+		 * (Exception e) {
+		 * 
+		 * } String searchByDesignation = request.getParameter("searchByDesignation");
+		 * 
+		 * if (designation.isEmpty()) {
+		 * 
+		 * Article article = as.chercherArticleParId(idArticle);
+		 * 
+		 * if (null != article) { request.setAttribute("article", article);
+		 * this.getServletContext().getRequestDispatcher("/findArticle.jsp").forward(
+		 * request, response); } else { String msg =
+		 * "L'article que vous venez de chercher n'existe pas. Id inconnu";
+		 * request.setAttribute("msg", msg);
+		 * this.getServletContext().getRequestDispatcher("/findArticleForm.jsp").forward
+		 * (request, response); }
+		 * 
+		 * } else { try { Article article =
+		 * as.chercherArticleParDesignation(designation);
+		 * request.setAttribute("article", article);
+		 * this.getServletContext().getRequestDispatcher("/findArticle.jsp").forward(
+		 * request, response); } catch (Exception e) { String msg =
+		 * "L'article que vous venez de chercher n'existe pas. Designation inconnue";
+		 * request.setAttribute("msg", msg);
+		 * this.getServletContext().getRequestDispatcher("/findArticleForm.jsp").forward
+		 * (request, response); }
+		 * 
+		 * }
+		 */
+
 		String designation = request.getParameter("designation");
 		int idArticle = -1;
 		try {
@@ -52,27 +84,39 @@ public class FindArticleServlet extends HttpServlet {
 		} catch (Exception e) {
 
 		}
+		String searchByDesignation = request.getParameter("searchByDesignation");
 
-		if (designation.isEmpty()) {
+		if (!(designation.isEmpty())) {
+			try {
+				Article article = as.chercherArticleParDesignation(designation);
+				request.setAttribute("article", article);
+				this.getServletContext().getRequestDispatcher("/findArticle.jsp").forward(request, response);
+			} catch (Exception e) {
+				String msg = "L'article que vous venez de chercher n'existe pas. Designation inconnue";
+				request.setAttribute("msg", msg);
+				this.getServletContext().getRequestDispatcher("/findArticleForm.jsp").forward(request, response);
+			}
 
+		} else if (idArticle != -1) {
 			Article article = as.chercherArticleParId(idArticle);
 
 			if (null != article) {
 				request.setAttribute("article", article);
 				this.getServletContext().getRequestDispatcher("/findArticle.jsp").forward(request, response);
 			} else {
-				String msg = "L'article que vous venez de chercher n'existe pas";
+				String msg = "L'article que vous venez de chercher n'existe pas. Id inconnu";
 				request.setAttribute("msg", msg);
 				this.getServletContext().getRequestDispatcher("/findArticleForm.jsp").forward(request, response);
 			}
 
 		} else {
+
 			try {
-				Article article = as.chercherArticleParDesignation(designation);
+				Article article = as.searchByDesignation(searchByDesignation);
 				request.setAttribute("article", article);
 				this.getServletContext().getRequestDispatcher("/findArticle.jsp").forward(request, response);
 			} catch (Exception e) {
-				String msg = "L'article que vous venez de chercher n'existe pas";
+				String msg = "L'article que vous venez de chercher n'existe pas. Mot clé inconnu";
 				request.setAttribute("msg", msg);
 				this.getServletContext().getRequestDispatcher("/findArticleForm.jsp").forward(request, response);
 			}

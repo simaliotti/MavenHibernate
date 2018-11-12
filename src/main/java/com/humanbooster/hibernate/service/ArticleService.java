@@ -18,4 +18,10 @@ public interface ArticleService {
 	public void updateArticle(Article article);
 	
 	public void deleteArticle(Article article);
+	
+	public void deleteAll();
+	
+	public Article searchByDesignation(String designation);
+	
+	
 }
