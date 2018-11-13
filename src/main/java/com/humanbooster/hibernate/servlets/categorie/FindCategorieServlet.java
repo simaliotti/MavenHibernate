@@ -1,4 +1,4 @@
-package com.humanbooster.hibernate.servlets.commande;
+package com.humanbooster.hibernate.servlets.categorie;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

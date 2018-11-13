@@ -13,12 +13,12 @@
 	<c:forEach var="categorie" items="${categories}">
 		<p>${categorie.nom} ${categorie.idCategorie } 
 			
-			<form action="UpdateArticleServlet" method="GET">
+			<form action="UpdateCategorieServlet" method="GET">
 			<input type="hidden" name="update" value="${categorie.idCategorie }" /> 
 			<input type="submit" value=" Modifier  " />
 			</form>
 
-	 		<form action="DeleteArticleServlet" method="POST">
+	 		<form action="DeleteCategorieServlet" method="POST">
 			<input type="hidden" name="delete" value="${categorie.idCategorie }" /> 
 			<input type="submit" value="Supprimer" />
 			</form> 

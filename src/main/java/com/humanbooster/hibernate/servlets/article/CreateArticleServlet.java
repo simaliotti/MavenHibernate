@@ -53,7 +53,8 @@ public class CreateArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		List<Categorie> listCategorie = cs.findAll();
+	
 		String designation = null;
 		int nbPoints = 0;
 		int stock = 0;
@@ -63,6 +64,7 @@ public class CreateArticleServlet extends HttpServlet {
 		try {
 			designation = request.getParameter("designation");
 		} catch (Exception e) {
+			request.setAttribute("categories", listCategorie);
 			request.setAttribute("msg", msg);
 			this.getServletContext().getRequestDispatcher("/createArticleForm.jsp").forward(request, response);
 		}
@@ -71,6 +73,7 @@ public class CreateArticleServlet extends HttpServlet {
 			as.chercherArticleParDesignation(designation);
 			msg = designation + " est déja utilisé";
 			request.setAttribute("msg", msg);
+			request.setAttribute("categories", listCategorie);
 			this.getServletContext().getRequestDispatcher("/createArticleForm.jsp").forward(request, response);
 			return;
 		} catch (Exception e) {
@@ -81,12 +84,14 @@ public class CreateArticleServlet extends HttpServlet {
 			nbPoints = Integer.parseInt(request.getParameter("nbPoints"));
 			stock = Integer.parseInt(request.getParameter("stock"));
 		} catch (Exception e) {
+			request.setAttribute("categories", listCategorie);
 			request.setAttribute("msg", msg);
 			this.getServletContext().getRequestDispatcher("/createArticleForm.jsp").forward(request, response);
 		}
 		
 
 		if (nbPoints == 0 || stock == 0) {
+			request.setAttribute("categories", listCategorie);
 			request.setAttribute("msg", msg);
 			this.getServletContext().getRequestDispatcher("/createArticleForm.jsp").forward(request, response);
 		}

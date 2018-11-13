@@ -82,6 +82,8 @@ public class UpdateArticleServlet extends HttpServlet {
 			try {
 				as.chercherArticleParDesignation(designation);
 				msg = designation + " est déja utilisé";
+				request.setAttribute("article", articleToUpDate);
+				request.setAttribute("categories", listCategorie);
 				request.setAttribute("msg", msg);
 				this.getServletContext().getRequestDispatcher("/updateArticleForm.jsp").forward(request, response);
 				return;

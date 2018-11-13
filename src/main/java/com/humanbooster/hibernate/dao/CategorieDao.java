@@ -18,6 +18,10 @@ public interface CategorieDao {
 	
 	public Categorie findById(int id);
 	
+	public void update(Categorie categorie);
+	
+	public void delete(Categorie categorie);
+	
 	public Session openCurrentSession();
 	
 	public Session openCurrentSessionWithTransaction();

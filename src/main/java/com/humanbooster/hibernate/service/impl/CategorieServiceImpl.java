@@ -32,11 +32,24 @@ public class CategorieServiceImpl implements CategorieService {
 		categorieDao.closeCurrentSession();
 		return cat;
 	}
+
 	public Categorie findById(int id) {
 		categorieDao.openCurrentSession();
 		Categorie cat = categorieDao.findById(id);
 		categorieDao.closeCurrentSession();
 		return cat;
+	}
+
+	public void update(Categorie categorie) {
+		categorieDao.openCurrentSessionWithTransaction();
+		categorieDao.update(categorie);
+		categorieDao.closeCurrentSessionWithTransaction();
+	}
+
+	public void delete(Categorie categorie) {
+		categorieDao.openCurrentSessionWithTransaction();
+		categorieDao.delete(categorie);
+		categorieDao.closeCurrentSessionWithTransaction();
 	}
 
 }
