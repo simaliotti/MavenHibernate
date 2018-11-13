@@ -11,25 +11,18 @@
 	<h1>Liste des Articles</h1>
 	<br>
 	<c:forEach var="article" items="${articles}">
-		<p>${article.designation} ${article.idArticle } ${article.categorie.nom}
-			
-			<form action="UpdateArticleServlet" method="GET">
-			<input type="hidden" name="update" value="${article.idArticle}" /> 
-			<input type="submit" value=" Modifier  " />
-			</form>
-
-	 		<form action="DeleteArticleServlet" method="POST">
-			<input type="hidden" name="delete" value="${article.idArticle}" /> 
-			<input type="submit" value="Supprimer" />
-			</form> 
+		 
+			<a href="${pageContext.request.contextPath}/OneArticleServlet?idArticle=${article.idArticle}">${article.designation}</a> <br />	
 		
-		</p>
+	
+		
+		
 	</c:forEach>
 	<br>
 	<br>
 	<p>Nombre total d'article(s): ${articles.size()}</p> </br>
 		<a href="${pageContext.request.contextPath}/ArticleListOrdonnedServlet">Ordonner les articles par désignation</a> <br />
-		<a href="${pageContext.request.contextPath}/DeleteAllArticleServlet">Suprrimer tous les articles</a> <br /><br />
+		<a href="${pageContext.request.contextPath}/DeleteAllArticleServlet">Suprrimer tous les articles</a> <br />
 		<a href="${pageContext.request.contextPath}/index"> Retour </a>
 </body>
 </html>

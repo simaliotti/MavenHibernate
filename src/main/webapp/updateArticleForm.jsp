@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +26,33 @@
 		<label for="name2">Nombre de points</label>  <br/>
 		
 		<input type="text" id="name3" value="${article.stock}" name="stock" />
-		<label for="name3">Nombre de points</label>  <br/>
+		<label for="name3">Stock</label>  <br/>
 		
-		<input type="text" id="name4" value="${article.categorie.nom}" name="categorie" />
-		<label for="name4">Catégorie</label>  <br/>
-		
+		<select name="categorieName">
+			<c:forEach items="${categories}" var="categorie">
+				
+				 				
+          									 
+		    	 <c:choose> 
+				         <c:when test = "${categorie.nom eq article.categorie.nom}">
+				         	<option value="${categorie.nom}" selected>${categorie.nom}</option>	
+				         </c:when>
+				         
+				         
+				         <c:otherwise>
+				          <option value="${categorie.nom}" >${categorie.nom}</option>	
+				         </c:otherwise>
+				         </c:choose>
+				        
+				         	
+				       
+				
+				
+			</c:forEach>
+		</select>
 		
 	<input type="submit" id="name3" value="Valider" />
-		
+	<p>${msg }</p>	
 	</form>
 
 </body>
