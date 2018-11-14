@@ -25,5 +25,6 @@ public interface ArticleService {
 	
 	public List<Article>findAllOrderedByName();
 	
+	public  List<Article> findArticleByCategorie(Categorie categorie);
 	
 }

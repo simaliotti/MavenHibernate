@@ -2,6 +2,7 @@ package com.humanbooster.hibernate.service.impl;
 
 import java.util.List;
 
+import com.humanbooster.hibernate.business.Article;
 import com.humanbooster.hibernate.business.Categorie;
 import com.humanbooster.hibernate.dao.CategorieDao;
 import com.humanbooster.hibernate.dao.impl.CategorieDaoImpl;
@@ -52,4 +53,23 @@ public class CategorieServiceImpl implements CategorieService {
 		categorieDao.closeCurrentSessionWithTransaction();
 	}
 
+	public void deleteAll() {
+		categorieDao.openCurrentSessionWithTransaction();
+		categorieDao.deleteAll();
+		categorieDao.closeCurrentSessionWithTransaction();
+	}
+
+	@Override
+	public void deleteAll2() {
+		categorieDao.openCurrentSessionWithTransaction();
+		List<Categorie> listCategorie= categorieDao.findAll();
+		categorieDao.closeCurrentSessionWithTransaction();
+		
+		categorieDao.openCurrentSessionWithTransaction();
+		for (Categorie categorie : listCategorie) {
+			categorieDao.delete(categorie);
+		}
+		categorieDao.closeCurrentSessionWithTransaction();
+		
+	}
 }

@@ -18,7 +18,7 @@
 			<input type="submit" value=" Modifier  " />
 			</form>
 
-	 		<form action="DeleteCategorieServlet" method="POST">
+	 		<form action="DeleteCategorieServlet" method="GET">
 			<input type="hidden" name="delete" value="${categorie.idCategorie }" /> 
 			<input type="submit" value="Supprimer" />
 			</form> 
@@ -29,7 +29,7 @@
 	<br>
 	<p>Nombre total de categorie(s): ${categories.size()}</p> </br>
 		
-		<a href="${pageContext.request.contextPath}/DeleteAllArticleServlet">Suprrimer tous les articles</a> <br /><br />
+		<a href="${pageContext.request.contextPath}/DeleteAllCategoriesServlet">Supprimer toutes les categories.</a> <br /><br />
 		<a href="${pageContext.request.contextPath}/index"> Retour </a>
 </body>
 </html>

@@ -119,4 +119,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return listArticleOrdonned;
 	}
 	
+	public  List<Article> findArticleByCategorie(Categorie categorie){
+		articleDao.openCurrentSession();
+		List<Article> listArticleByCategorie = articleDao.findArticleByCategorie(categorie);
+		articleDao.closeCurrentSession();
+		return listArticleByCategorie;
+	}
 }

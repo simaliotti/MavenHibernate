@@ -46,6 +46,11 @@ public class CategorieDaoImpl implements CategorieDao {
 	public void delete(Categorie categorie) {
 		session.delete(categorie);
 	}
+
+	public void deleteAll() {
+		session.createQuery("delete from Categorie").executeUpdate();
+	}
+
 	public Session openCurrentSession() {
 		session = getSessionFactory().openSession();
 		return session;

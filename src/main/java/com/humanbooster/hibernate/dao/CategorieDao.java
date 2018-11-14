@@ -22,6 +22,8 @@ public interface CategorieDao {
 	
 	public void delete(Categorie categorie);
 	
+	public void deleteAll();
+	
 	public Session openCurrentSession();
 	
 	public Session openCurrentSessionWithTransaction();

@@ -28,6 +28,8 @@ public interface ArticleDao {
 	
 	public List<Article>findAllOrderedByName();
 	
+	public  List<Article> findArticleByCategorie(Categorie categorie);
+	
 	
 	public Session openCurrentSession();
 

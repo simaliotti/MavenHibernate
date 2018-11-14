@@ -17,18 +17,18 @@ import com.humanbooster.hibernate.service.impl.ArticleServiceImpl;
 import com.humanbooster.hibernate.service.impl.CategorieServiceImpl;
 
 /**
- * Servlet implementation class DeleteArticleServlet
+ * Servlet implementation class FindArticlesByCategorieServlet
  */
-@WebServlet("/DeleteCategorieServlet")
-public class DeleteCategorieServlet extends HttpServlet {
+@WebServlet("/FindArticlesByCategorieServlet")
+public class FindArticlesByCategorieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ArticleService as = new ArticleServiceImpl();
+	private CategorieService cs = new CategorieServiceImpl();
        
-	CategorieService cs = new CategorieServiceImpl();
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCategorieServlet() {
+    public FindArticlesByCategorieServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,11 +37,9 @@ public class DeleteCategorieServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idCategorie = Integer.parseInt(request.getParameter("delete"));
-		Categorie categorie = cs.findById(idCategorie);
-		cs.delete(categorie);
-		System.out.println("================TEST=================");
-		response.sendRedirect(request.getContextPath()+"/index");
+		List<Categorie> listcategorie= cs.findAll();
+		request.setAttribute("categories", listcategorie);
+		request.getRequestDispatcher("/WEB-INF/categorie/findAByCForm.jsp").include(request, response);
 	}
 
 	/**
@@ -49,7 +47,16 @@ public class DeleteCategorieServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.sendRedirect(request.getContextPath()+"/index");
+		String nom = request.getParameter("nom");
+		Categorie cat = cs.findByName(nom);
+		System.out.println("===========================cat");
+		System.out.println(cat);
+		List<Article> listArticle = as.findArticleByCategorie(cat);
+		request.setAttribute("articles", listArticle);
+		System.out.println("===========================list");
+		System.out.println(listArticle);
+		request.getRequestDispatcher("/listArticle.jsp").include(request, response);
+		
 	}
 
 }

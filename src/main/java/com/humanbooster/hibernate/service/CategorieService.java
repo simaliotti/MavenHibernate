@@ -18,4 +18,8 @@ public interface CategorieService {
 
 	public void delete(Categorie categorie);
 
+	public void deleteAll();
+	
+	public void deleteAll2();
+
 }

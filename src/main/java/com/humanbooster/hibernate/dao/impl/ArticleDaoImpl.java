@@ -130,4 +130,10 @@ public class ArticleDaoImpl implements ArticleDao {
 		return session.createQuery("from Article order by designation").getResultList();
 	}
 
+	
+	public  List<Article> findArticleByCategorie(Categorie categorie){
+		session.createQuery("from Article where categorie.idCategorie =:categorieId").setParameter("categorieId", categorie.getIdCategorie()).getResultList();
+		return null;
+	}
+	
 }
