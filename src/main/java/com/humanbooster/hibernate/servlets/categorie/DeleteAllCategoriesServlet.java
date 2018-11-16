@@ -32,7 +32,8 @@ public class DeleteAllCategoriesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("===========CA RENTRE ?==============");
-		cs.deleteAll2();
+		//cs.deleteAll2();
+		cs.deleteAll();
 		response.sendRedirect(request.getContextPath()+"/index");
 	}
 

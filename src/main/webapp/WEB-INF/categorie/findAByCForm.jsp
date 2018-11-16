@@ -1,28 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>TEST</title>
+<meta charset="UTF-8">
+<title>List articles by category</title>
 </head>
 <body>
-<h1>TEST </h1>
+
+	<h1>Lister les articles d'une categorie</h1>
+
+
 
 	<form action="FindArticlesByCategorieServlet" method="POST">
-		
-		
-		<input type="text" id="name" name="nom" />
-		<label for="name">Nom</label>  <br/>
-		
-		
-	<input type="submit" id="name3" value="Valider" /> </br>
-	
-	
-		
+
+		<select name="nom">
+
+			<c:forEach items="${categories}" var="categorie">
+				
+				<option value="${categorie.nom}">${categorie.nom }</option>	
+				
+				
+			</c:forEach>
+			<br/>
+		</select> <input type="submit" value="Rechercher" />
+
+
+
 	</form>
-	
-	 ${msg} </br>
+
+
+
+
+	<br />
+
 	<a href="${pageContext.request.contextPath}/index"> Retour </a>
+	<br />
+
 </body>
 </html>

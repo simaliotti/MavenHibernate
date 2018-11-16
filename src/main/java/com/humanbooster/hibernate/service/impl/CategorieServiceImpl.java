@@ -63,9 +63,9 @@ public class CategorieServiceImpl implements CategorieService {
 	public void deleteAll2() {
 		categorieDao.openCurrentSessionWithTransaction();
 		List<Categorie> listCategorie= categorieDao.findAll();
-		categorieDao.closeCurrentSessionWithTransaction();
+		//categorieDao.closeCurrentSessionWithTransaction();
 		
-		categorieDao.openCurrentSessionWithTransaction();
+		//categorieDao.openCurrentSessionWithTransaction();
 		for (Categorie categorie : listCategorie) {
 			categorieDao.delete(categorie);
 		}

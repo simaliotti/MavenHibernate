@@ -19,7 +19,7 @@
 			<a href="${pageContext.request.contextPath}/CreateCategorieServlet">Créer une catégorie</a> <br />
 			<a href="${pageContext.request.contextPath}/CategoriesServlet">Lister les catégories</a> <br />
 			<a href="${pageContext.request.contextPath}/FindCategorieServlet">Rechercher une catégorie</a> <br />
-			<a href="${pageContext.request.contextPath}/FindArticlesByCategorieServlet">TEST</a> <br />
+			<a href="${pageContext.request.contextPath}/FindArticlesByCategorieServlet">Recherche article par categorie</a> <br />
 			<a href = "<c:url value="/DeleteArticleServlet"/>">Supprimer un article</a>
 </body>
 </html>
